@@ -1,0 +1,30 @@
+<!-- Rummy Score -->
+<div class="card text-center mt-4" *ngIf="nbrPlayers < 1;else test">
+    <div class="card-header text-primary display-4">
+    Rummy Score
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+        <label for="exampleFormControlSelect1">Choose Number of Players : </label>
+        <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="nbrPlayers">
+            <option value="0"></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        </div>
+    </div>
+</div>
+<ng-template #test>
+    <div class="card text-center mt-4">
+    <div class="card-header text-primary display-4">
+    Rummy Score Reset
+    </div>
+    <div class="card-body">
+        <button type="reset" (click)="reset()">Reset The Game</button>
+    </div>
+</div>
+</ng-template>
+
+
+<app-rummy-player-item *ngIf="nbrPlayers > 0" [nbrPlayers]="nbrPlayers"></app-rummy-player-item>

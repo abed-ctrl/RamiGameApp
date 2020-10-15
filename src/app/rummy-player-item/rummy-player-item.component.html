@@ -1,0 +1,28 @@
+<!-- Rummy Players -->
+<div class="card text-center mt-4">
+    <div class="card-header text-primary display-4">
+    Rummy Players
+    </div>
+    <div class="card-body">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm" *ngFor="let player of players, let i = index">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{player.name}}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="" placeholder="Add To Score" (keyup.enter)="onAddScore(player.index)" [(ngModel)]="player.score" >
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary" type="button" (click)="onAddScore(player.index)">Add To Score</button>
+                        </div>
+                    </div>
+                    <h1 class="card-title pricing-card-title" [ngStyle]="{'color': player.scoreTotal > 101 ? 'red' : 'black'}">{{ player.scoreTotal}} / Total</h1>
+                    <h3>Historic</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let score of player.scoreArray">{{score}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
