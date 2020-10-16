@@ -7,16 +7,16 @@
         <div class="card-deck mb-3 text-center">
             <div class="card mb-4 shadow-sm" *ngFor="let player of players, let i = index">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{player.name}}</h4>
+                    <h4 class="my-0 font-weight-normal" [ngStyle]="{'color': player.dist == true ? 'red' : 'black'}">{{player.name}}</h4>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <input class="form-control" type="text" name="" placeholder="Add To Score" (keyup.enter)="onAddScore(player.index)" [(ngModel)]="player.score" >
+                        <input class="form-control" type="number" name="" placeholder="Add To Score" (keyup.enter)="onAddScore(player.index)" [(ngModel)]="player.score" >
                         <div class="input-group-prepend">
                             <button class="btn btn-primary" type="button" (click)="onAddScore(player.index)">Add To Score</button>
                         </div>
                     </div>
-                    <h1 class="card-title pricing-card-title" [ngStyle]="{'color': player.scoreTotal > 101 ? 'red' : 'black'}">{{ player.scoreTotal}} / Total</h1>
+                    <h1 class="card-title pricing-card-title" [ngStyle]="{'color': player.scoreTotal >= 101 ? 'red' : 'black'}">{{ player.scoreTotal}} / Total</h1>
                     <h3>Historic</h3>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" *ngFor="let score of player.scoreArray">{{score}}</li>

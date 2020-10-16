@@ -4,4 +4,5 @@ export class Player {
     score: number;
     scoreArray: number[];
     scoreTotal: number;
+    dist: boolean;
 }

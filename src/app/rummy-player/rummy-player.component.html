@@ -1,30 +1,91 @@
 <!-- Rummy Score -->
-<div class="card text-center mt-4" *ngIf="nbrPlayers < 1;else test">
-    <div class="card-header text-primary display-4">
-    Rummy Score
-    </div>
-    <div class="card-body">
+<div class="card text-center mt-4" *ngIf="nbrPlayers < 1; else test">
+    <div class="card-header text-primary display-4">Rummy Score</div>
+    <div class="card-body" *ngIf="nbrPlayers < 1">
         <div class="form-group">
-        <label for="exampleFormControlSelect1">Choose Number of Players : </label>
-        <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="nbrPlayers">
-            <option value="0"></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
+            <label for="exampleFormControlSelect1">Choose Number of Players : </label>
+            <select
+                class="form-control"
+                id="exampleFormControlSelect1"
+                [(ngModel)]="nbrPlayers">
+                <option value="0"></option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
         </div>
     </div>
 </div>
+
 <ng-template #test>
+    <div class="card text-center mt-4" *ngIf="playersName.length < 1; else test1">
+        <div class="card-header text-primary display-4">Players Names</div>
+        <div class="card-body" *ngIf="nbrPlayers == 2">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name Of Player 1</label>
+                <input
+                required
+                type="email"
+                class="form-control"
+                [(ngModel)]="namePlayer1"
+                placeholder="Name Of Player 1"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name Of Player 2</label>
+                <input
+                required
+                type="email"
+                class="form-control"
+                [(ngModel)]="namePlayer2"
+                placeholder="Name Of Player 2"/>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" (click)="addPlayersNames(2)">Submit</button>
+        </div>
+
+        <div class="card-body" *ngIf="nbrPlayers == 3">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name Of Player 1</label>
+                <input
+                required
+                type="email"
+                class="form-control"
+                [(ngModel)]="namePlayer1"
+                placeholder="Name Of Player 1"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name Of Player 2</label>
+                <input
+                required
+                type="email"
+                class="form-control"
+                [(ngModel)]="namePlayer2"
+                placeholder="Name Of Player 2"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name Of Player 3</label>
+                <input
+                required
+                type="email"
+                class="form-control"
+                [(ngModel)]="namePlayer3"
+                placeholder="Name Of Player 2"/>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" (click)="addPlayersNames(3)">Submit</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #test1>
     <div class="card text-center mt-4">
-    <div class="card-header text-primary display-4">
-    Rummy Score Reset
+        <div class="card-header text-primary display-4">Rummy Score Reset</div>
+        <div class="card-body">
+            <button type="reset" (click)="reset()">Reset The Game</button>
+        </div>
     </div>
-    <div class="card-body">
-        <button type="reset" (click)="reset()">Reset The Game</button>
-    </div>
-</div>
 </ng-template>
 
 
-<app-rummy-player-item *ngIf="nbrPlayers > 0" [nbrPlayers]="nbrPlayers"></app-rummy-player-item>
+<app-rummy-player-item
+  *ngIf="playersName.length > 1"
+  [nbrPlayers]="nbrPlayers"
+  [playersName]="playersName"
+></app-rummy-player-item>
